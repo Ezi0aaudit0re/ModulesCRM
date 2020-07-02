@@ -1,2 +1,2 @@
-utils/.idea/*
-utils/__pycache__/*
+utils/*
+lib/*
