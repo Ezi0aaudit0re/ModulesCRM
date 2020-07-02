@@ -1,6 +1,7 @@
 package com.web_app.springproject.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 // this will only be a read only class
 @Entity
@@ -11,12 +12,41 @@ public class Courses {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idcourses;
 
 
-    public int getId() {
-        return id;
+    public void setName(String name) {
+        this.name = name;
     }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
+
+    public void setPreReq(String preReq) {
+        this.preReq = preReq;
+    }
+
 
     public String getName() {
         return name;
@@ -71,10 +101,29 @@ public class Courses {
     @Column(name = "credits")
     private int credits;
 
+
+    public List<Section> getSections() {
+        return sections;
+    }
+
+    // for one to many relation
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id")
+    private List<Section> sections;
+
+
+    public int getCoursesid() {
+        return idcourses;
+    }
+
+    public void setCoursesid(int coursesid) {
+        this.idcourses = coursesid;
+    }
+
     @Override
     public String toString() {
         return "Courses{" +
-                "id=" + id +
+                "id=" + idcourses +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", department='" + department + '\'' +
